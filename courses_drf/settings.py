@@ -148,3 +148,4 @@ REST_FRAMEWORK = {
     ],
 }
 APPEND_SLASH = True
+SITE_ID = 1
