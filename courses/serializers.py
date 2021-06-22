@@ -4,16 +4,16 @@ from users .models import CustomUser
 from .models import Course
 
 
-class CourseSerializer(serializers.ModelSerializer):
+class CourseSerializer(serializers.HyperlinkedModelSerializer):
     """
-    This serializer is used for creating a course
+    This serializer is used for Course model.
     """
-    instructor = serializers.SlugRelatedField(queryset=CustomUser.objects, slug_field='email')
-    participants = serializers.SlugRelatedField(queryset=CustomUser.objects, slug_field='email', many=True)
+    instructor = serializers.SlugRelatedField(slug_field='email', read_only=True)
+    participants = serializers.SlugRelatedField(slug_field='email', many=True, read_only=True)
 
     def create(self, validated_data):
         """
-        Creates CustomUser object.
+        Creates Course object.
         """
         course = Course.objects.create(**validated_data)
         course.instructor = self.context['request'].user
@@ -23,6 +23,7 @@ class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
         fields = (
+            'url',
             'name',
             'abbr',
             'description',
@@ -31,7 +32,4 @@ class CourseSerializer(serializers.ModelSerializer):
             'instructor',
             'participants',
         )
-        extra_kwargs = {
-            'instructor': {'read_only': True},
-            'participants': {'read_only': True},
-        }
+

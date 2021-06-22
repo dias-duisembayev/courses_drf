@@ -7,7 +7,7 @@ from rest_framework.reverse import reverse
 
 from .models import CustomUser
 from .serializers import StudentRegistrationSerializer, TeacherRegistrationSerializer
-
+from courses.views import AllCourseList, CourseAddition, CourseCreation, CourseDetail, PersonalCourseList
 
 class Login(ObtainAuthToken):
     """
@@ -68,4 +68,7 @@ class ApiRoot(generics.GenericAPIView):
             'teachers registration': reverse(TeacherRegistration.name, request=request),
             'login': reverse(Login.name, request=request),
             'logout': reverse(Logout.name, request=request),
+            'all courses': reverse(AllCourseList.name, request=request),
+            'personal courses': reverse(PersonalCourseList.name, request=request),
+            'course creation': reverse(CourseCreation.name, request=request),
             })
