@@ -7,7 +7,8 @@ from rest_framework.reverse import reverse
 
 from .models import CustomUser
 from .serializers import StudentRegistrationSerializer, TeacherRegistrationSerializer
-from courses.views import AllCourseList, CourseAddition, CourseCreation, CourseDetail, PersonalCourseList
+from courses.views import AllCourseList, CourseCreation, PersonalCourseList
+
 
 class Login(ObtainAuthToken):
     """
@@ -40,7 +41,7 @@ class Logout(generics.CreateAPIView):
 
 class StudentRegistration(generics.CreateAPIView):
     """
-    Register new student
+    Register new student.
     """
     queryset = CustomUser.objects.all()
     serializer_class = StudentRegistrationSerializer
@@ -49,7 +50,7 @@ class StudentRegistration(generics.CreateAPIView):
 
 class TeacherRegistration(generics.CreateAPIView):
     """
-    Register new teacher
+    Register new teacher.
     """
     queryset = CustomUser.objects.all()
     serializer_class = TeacherRegistrationSerializer

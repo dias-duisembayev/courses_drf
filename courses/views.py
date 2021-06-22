@@ -7,12 +7,12 @@ from rest_framework.response import Response
 from .models import Course
 from .permissions import IsCourseYearAllowed, IsTeacherOrReadOnly
 from .serializers import CourseSerializer
-from users.permissions import IsTeacher, IsStudent
+from users.permissions import IsStudent, IsTeacher
 
 
 class CourseCreation(generics.CreateAPIView):
     """
-    Create new course
+    Create new course.
     """
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
@@ -22,7 +22,7 @@ class CourseCreation(generics.CreateAPIView):
 
 class AllCourseList(generics.ListAPIView):
     """
-    List all courses
+    List all courses.
     """
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
@@ -32,7 +32,7 @@ class AllCourseList(generics.ListAPIView):
 
 class PersonalCourseList(generics.ListAPIView):
     """
-    List courses where request.user is either a participant or an instructor
+    List courses where request.user is either a participant or an instructor.
     """
     serializer_class = CourseSerializer
     permission_classes = [IsAuthenticated,]
@@ -48,7 +48,7 @@ class PersonalCourseList(generics.ListAPIView):
 
 class CourseDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-    Get, put, delete a single course
+    Get, put, delete a single course.
     """
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
@@ -58,7 +58,7 @@ class CourseDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class CourseAddition(generics.UpdateAPIView):
     """
-    Adds request.user to the set of participants of the course
+    Adds request.user to the set of participants of the course.
     """
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
