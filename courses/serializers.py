@@ -9,6 +9,7 @@ class CourseSerializer(serializers.HyperlinkedModelSerializer):
     """
     instructor = serializers.SlugRelatedField(slug_field='email', read_only=True)
     participants = serializers.SlugRelatedField(slug_field='email', many=True, read_only=True)
+    capacity = serializers.IntegerField(read_only=True)
 
     def create(self, validated_data):
         """

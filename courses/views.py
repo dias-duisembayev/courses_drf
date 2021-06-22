@@ -28,6 +28,14 @@ class AllCourseList(generics.ListAPIView):
     serializer_class = CourseSerializer
     permission_classes = [IsAuthenticated,]
     name = 'course-all-list'
+    filter_fields = (
+        'year',
+    )
+    ordering_fields = (
+        'name',
+        'abbr',
+        'capacity',
+    )
 
 
 class PersonalCourseList(generics.ListAPIView):
@@ -37,6 +45,11 @@ class PersonalCourseList(generics.ListAPIView):
     serializer_class = CourseSerializer
     permission_classes = [IsAuthenticated,]
     name = 'course-personal-list'
+    ordering_fields = (
+        'name',
+        'abbr',
+        'capacity',
+    )
 
     def get_queryset(self):
         """
@@ -69,6 +82,7 @@ class CourseAddition(generics.UpdateAPIView):
         course = self.get_object()
         participant = self.request.user
         course.participants.add(participant)
+        course.capacity = course.capacity+1
         course.save()
         serializer = self.get_serializer(course)
         return Response(serializer.data)
