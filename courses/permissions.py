@@ -12,15 +12,15 @@ class IsCourseYearAllowed(permissions.BasePermission):
         return obj.year == request.user.year
 
 
-class IsTeacherOrReadOnly(permissions.BasePermission):
+class IsCourseTeacherOrReadOnly(permissions.BasePermission):
     """
     Permission class for identifying if user is a teacher or if a action is safe.
     """
-    def has_permission(self, request, view):
+    def has_object_permission(self, request, view, obj):
         """
         Return true if the action is safe or if request.user is a teacher.
         """
         if request.method in permissions.SAFE_METHODS:
             return True
         else:
-            return request.user.is_teacher
+            return obj.instructor == request.user

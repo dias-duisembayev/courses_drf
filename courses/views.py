@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .models import Course
-from .permissions import IsCourseYearAllowed, IsTeacherOrReadOnly
+from .permissions import IsCourseYearAllowed, IsCourseTeacherOrReadOnly
 from .serializers import CourseSerializer
 from users.permissions import IsStudent, IsTeacher
 
@@ -65,7 +65,7 @@ class CourseDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
-    permission_classes = [IsAuthenticated, IsTeacherOrReadOnly]
+    permission_classes = [IsAuthenticated, IsCourseTeacherOrReadOnly]
     name = 'course-detail'
 
 
