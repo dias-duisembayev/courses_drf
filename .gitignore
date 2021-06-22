@@ -1,0 +1,5 @@
+venv
+courses_drf/__pycache__
+users/__pycache__
+.idea
+courses/__pycache__
