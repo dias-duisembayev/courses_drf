@@ -30,7 +30,7 @@ class Logout(generics.CreateAPIView):
     """
     Delete token of a request's user.
     """
-    permission_classes = IsAuthenticated
+    permission_classes = [IsAuthenticated,]
     name = 'logout'
 
     def post(self, request, *args, **kwargs):

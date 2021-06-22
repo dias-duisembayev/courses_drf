@@ -1,10 +1,13 @@
 from django.db.models import Q
 
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .models import Course
+from .permissions import IsCourseYearAllowed, IsTeacherOrReadOnly
 from .serializers import CourseSerializer
+from users.permissions import IsTeacher, IsStudent
 
 
 class CourseCreation(generics.CreateAPIView):
@@ -13,6 +16,7 @@ class CourseCreation(generics.CreateAPIView):
     """
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+    permission_classes = [IsAuthenticated, IsTeacher]
     name = 'course-creation'
 
 
@@ -22,6 +26,7 @@ class AllCourseList(generics.ListAPIView):
     """
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+    permission_classes = [IsAuthenticated,]
     name = 'course-all-list'
 
 
@@ -30,6 +35,7 @@ class PersonalCourseList(generics.ListAPIView):
     List courses where request.user is either a participant or an instructor
     """
     serializer_class = CourseSerializer
+    permission_classes = [IsAuthenticated,]
     name = 'course-personal-list'
 
     def get_queryset(self):
@@ -46,6 +52,7 @@ class CourseDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
+    permission_classes = [IsAuthenticated, IsTeacherOrReadOnly]
     name = 'course-detail'
 
 
@@ -53,8 +60,9 @@ class CourseAddition(generics.UpdateAPIView):
     """
     Adds request.user to the set of participants of the course
     """
-    serializer_class = CourseSerializer
     queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+    permission_classes = [IsAuthenticated, IsStudent, IsCourseYearAllowed]
     name = 'course-addition'
 
     def update(self, request, *args, **kwargs):
