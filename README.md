@@ -6,15 +6,15 @@ Teachers also can see the list of all courses and the list of their personal cou
 Students can see the list of all courses, add some of them (if the year requirements is satisfied) and view them.
 
 URLS:  
-    Registration for students: "http://127.0.0.1:8000/registration/student/",  
-    Registration for teachers: "http://127.0.0.1:8000/registration/teacher/",  
-    Login: "http://127.0.0.1:8000/login/",  
-    Logout: "http://127.0.0.1:8000/logout/",  
-    All courses: "http://127.0.0.1:8000/courses/all/",  
-    Personal courses: "http://127.0.0.1:8000/courses/my/",  
-    Course creation: "http://127.0.0.1:8000/courses/create/"  
-    A single course: "http://127.0.0.1:8000/courses/<pl>/",  
-    Enroll to a course: "http://127.0.0.1:8000/courses/<pl>/enroll"  
+    Registration for students: 'http://127.0.0.1:8000/registration/student/',  
+    Registration for teachers: 'http://127.0.0.1:8000/registration/teacher/',  
+    Login: 'http://127.0.0.1:8000/login/',  
+    Logout: 'http://127.0.0.1:8000/logout/',  
+    All courses: 'http://127.0.0.1:8000/courses/all/',  
+    Personal courses: 'http://127.0.0.1:8000/courses/my/',  
+    Course creation: 'http://127.0.0.1:8000/courses/create/',  
+    A single course: 'http://127.0.0.1:8000/courses/<pk>/',  
+    Enroll to a course: 'http://127.0.0.1:8000/courses/<pk>/enroll' 
 
 
 This project integrates:
