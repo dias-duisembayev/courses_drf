@@ -17,7 +17,8 @@ URLs:
     Enroll to a course: ``http://127.0.0.1:8000/courses/<pk>/enroll`` 
 
 
-This project integrates:
-Users app has custom user models, custom registration, login, logout views. Also, view-leve custom permissions were implemented.
-Courses app uses filtering and ordering as well as complex lookup. Custom view-level permissions were implemented as well.
-The project itself uses postgres as a DB engine and has a throttling configured.
+This project integrates:  
+Users app has custom user models, custom registration, login, logout views. Also, view-leve custom permissions were implemented.  
+Courses app uses filtering and ordering as well as complex lookup. Custom view-level permissions were implemented as well.  
+The project itself uses postgres as a DB engine and has a throttling configured.  
+The users app contains unit tests for registration/authentication functionalities.
